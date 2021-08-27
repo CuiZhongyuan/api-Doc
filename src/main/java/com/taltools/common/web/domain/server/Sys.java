@@ -1,4 +1,4 @@
-package com.taltools.web.domain.server;
+package com.taltools.common.web.domain.server;
 
 /**
  * 系统相关信息

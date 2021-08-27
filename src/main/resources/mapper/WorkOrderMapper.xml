@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taltools.dao.WorkOrderDao">
+    <select id="getResult" resultType="com.taltools.entity.WorkOrderEntity">
+    SELECT result , type ,`status` FROM tb_appraise_result tbs LEFT JOIN tb_work_order_2021_0 tw ON tbs.wo_number = tw.number  WHERE wo_number = #{wo_number};
+    </select>
+
+</mapper>

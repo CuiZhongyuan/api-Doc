@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taltools.dao.course.CourseCurriculumDao">
+    <select id="getCurriculumId" resultType="com.taltools.entity.CourseCurriculumEntity">
+   SELECT id,class_id,class_num FROM curriculum_1 WHERE class_id= #{class_id} AND class_num = '1';
+    </select>
+</mapper>

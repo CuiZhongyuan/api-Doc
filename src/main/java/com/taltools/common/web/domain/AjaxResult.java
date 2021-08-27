@@ -1,4 +1,4 @@
-package com.taltools.web.domain;
+package com.taltools.common.web.domain;
 
 import com.taltools.config.HttpStatus;
 import com.taltools.util.StringUtils;

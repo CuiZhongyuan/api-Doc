@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taltools.dao.AppraiseResultDao">
+    <select id="getAll" resultType="com.taltools.entity.AppraiseResultEntity">
+   SELECT type ,`status`, result ,current_node FROM tb_work_order_2021_0 tw LEFT JOIN tb_appraise_result tbs ON tbs.wo_number = tw.number  WHERE wo_number= #{wo_number};
+    </select>
+    <select id="deleteStuCode" resultType="com.taltools.entity.AppraiseResultEntity">
+    DELETE  FROM tb_appraise_log  where stu_code = #{stu_code};
+    </select>
+    <select id="getType" resultType="com.taltools.entity.AppraiseResultEntity">
+   SELECT type  FROM tb_work_order_2021_0 tw LEFT JOIN tb_appraise_result tbs ON tbs.wo_number = tw.number  WHERE wo_number= #{wo_number};
+    </select>
+    <select id="getStuCode" resultType="com.taltools.entity.AppraiseResultEntity">
+        SELECT wo_number ,stu_code from  tb_appraise_log  where stu_code = #{stu_code};
+    </select>
+</mapper>

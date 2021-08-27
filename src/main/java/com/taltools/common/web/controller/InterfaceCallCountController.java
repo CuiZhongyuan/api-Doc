@@ -1,4 +1,4 @@
-package com.taltools.web.controller;
+package com.taltools.common.web.controller;
 
 
 import com.taltools.common.web.page.TableDataInfo;

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.taltools.dao.regist.RegistStudentDao">
+    <select id="getStudentId" resultType="com.taltools.entity.RegistStudentEntity">
+      SELECT id,class_id,student_id,student_uid  FROM tb_regist  WHERE student_id= #{studentId} ORDER BY create_time DESC LIMIT 1;
+    </select>
+</mapper>

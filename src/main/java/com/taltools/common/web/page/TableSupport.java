@@ -1,4 +1,4 @@
-package com.taltools.web.page;
+package com.taltools.common.web.page;
 
 
 import com.taltools.util.ServletUtils;

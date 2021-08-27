@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.taltools.dao.UserDao">
+    <select id="listUser" resultType="com.taltools.entity.UserEntity">
+        select *
+        from user;
+    </select>
+
+    <select id="listUserByName" parameterType="com.taltools.entity.query.UserQuery" resultType="com.taltools.entity.UserEntity">
+        select *
+        from user
+        <where>
+            <if test="name != null and name != ''">
+                and `name` like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
+
+    <delete id="deleteUserById" parameterType="int">
+        delete from user where id=#{id}
+    </delete>
+
+    <select id="queryUserById" parameterType="int" resultType="com.taltools.entity.UserEntity">
+        select * from user where  id=#{id}
+    </select>
+
+
+    <update id="updateUser" parameterType="com.taltools.entity.UserEntity">
+        update user
+        set name = #{name},pwd = #{pwd}
+        where id = #{id}
+    </update>
+
+    <insert id="addUser" parameterType="com.taltools.entity.UserEntity">
+        insert into user(name, pwd) values (#{name},#{pwd})
+    </insert>
+</mapper>

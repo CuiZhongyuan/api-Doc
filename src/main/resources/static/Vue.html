@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hellow VUE</title>
+</head>
+<body>
+    <div id="app">
+        {{name}}+{{key1}}
+        <input type="text" v-on:click="sayHi" />
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data:{
+                name:'test',
+                key1: 'value1'
+            },
+            methods:{
+                sayHi:function(){
+                    alert("HELLO VUE!");
+                }
+            }
+        })
+    </script>
+</html>

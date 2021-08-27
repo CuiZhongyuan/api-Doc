@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--引入thymeleaf命名空间-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <!--引入css文件-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+</head>
+<body>
+    <div class="ui container" style="margin-top: 40px !important;">
+        <!--页面搜索：根据名称查询-->
+        <div class="ui attached segment">
+            <!--th:action="@{/}":路径  name="name"->name对应实体的字段-->
+            <form th:action="@{/}" method="post">
+                <input type="text" name="name" placeholder="请输入工单号名称">
+                <input type="submit" value="搜索">
+            </form>
+            <a th:href="@{/update}" class="ui button mini green" style="margin-top: 20px" >新增</a>
+        </div>
+        <!--表格列表--attached:表格&分页合成一个div??-->
+        <table class="ui celled attached table">
+            <thead>
+            <tr><th>id</th>
+                <th>姓名</th>
+                <th>密码</th>
+                <th>操作</th>
+            </tr></thead>
+            <tbody>
+            <!--th:each="user : ${page.list}:传入list表格-->
+            <tr th:each="user : ${page.list}">
+                <td th:text="${user.id}">id</td>
+                <td th:text="${user.name}">name</td>
+                <td th:text="${user.pwd}">pwd</td>
+                <td>
+                    <!--@{/edit/{id}(id=${user.id})}:点击编辑重定向该路径页面 -->
+                    <a  th:href="@{/edit/{id}(id=${user.id})}" class="ui button mini pink">编辑</a>
+                    <!--@{/delete/{id}(id=${user.id})}：获取页面id，通过user.id  -->
+                    <a th:href="@{/delete/{id}(id=${user.id})}" class="ui button mini teal">删除</a>
+                    <!--点击新增按钮，调转到controller层中的对应的 @GetMapping("/update")  -->
+<!--                    <a th:href="@{/update}" class="ui button mini green">新增</a>-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <!--表格分页-->
+        <div class="ui attached segment" >
+            <table class="m-mobile-wide" width="425px">
+                <tbody>
+                <tr align="center">
+                    <td>
+                        <a th:href="@{/(pageNum=${page.pageNum}-1)}"  class="ui button basic mini" th:unless="${page.isFirstPage}">上一页</a>
+                    </td>
+                    <td>
+                        第
+                        <h8 th:text="${page.pageNum}">2</h8>
+                        页/共
+                        <h8 th:text="${page.pages}">4</h8>
+                        页
+                        共
+                        <h8 th:text="${page.total}">29</h8>
+                        条
+                    </td>
+                    <td>
+                        <form name="pageForm" th:action="@{/}" method="get">
+                            <div class="ui mini input ">
+                                <!-- required：必填项属性  -->
+                                <input type="text" class="m-bg" name="pageNum" placeholder="页码" style="width: 50px !important; height: 25px !important;" required>
+                                <button type="submit" style="font-size: 11px!important;width: 30px!important; height: 0px!important; border: none;margin: 5px;padding: 0;" class="button mini">
+                                    跳转
+                                </button>
+                            </div>
+                        </form>
+                    </td>
+                    <td> &nbsp;</td>
+                    <td  style="float: right">
+                        <a th:href="@{/(pageNum=${page.pageNum}+1)}" class="ui button basic mini " style="float: right;" th:unless="${page.isLastPage}">下一页</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--删除成功提示框  ->message来源：UserController删除方法定义的message：attributes.addFlashAttribute("message","删除用户成功"); -->
+        <div class="ui success  message" th:unless="${#strings.isEmpty(message)}">
+            <i class="close icon"></i>
+            <div class="header">提示：</div>
+            <p th:text="${message}"></p>
+        </div>
+    </div>
+<!--引入jquery-cdn-->
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/ .js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<!--使用jquery选择器  ".message .close:位置指的的是message下的close icon" -->
+<script>
+    $(".message .close").on('click',function () {
+        $(this).closest(".message")
+            .transition("fade");
+    })
+</script>
+</body>
+
+</html>

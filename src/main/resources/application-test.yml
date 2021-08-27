@@ -1,0 +1,19 @@
+server:
+  port: 8082
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    regist:
+      url: jdbc:mysql://drdsbggam1l852u2.drds.aliyuncs.com:3306/trade_regist?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      username:
+      password:
+      driverClassName: com.mysql.cj.jdbc.Driver
+    course:
+      url: jdbc:mysql://rm-2zew8a5rp6k13j012.mysql.rds.aliyuncs.com:3306/master_course?useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+      username:
+      password:
+      driverClassName: com.mysql.cj.jdbc.Driver
+
+
